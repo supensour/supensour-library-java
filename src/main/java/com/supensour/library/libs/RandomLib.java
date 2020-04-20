@@ -1,4 +1,4 @@
-package com.supensour.library.utils;
+package com.supensour.library.libs;
 
 import java.util.Random;
 import java.util.UUID;

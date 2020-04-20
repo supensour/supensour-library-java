@@ -1,18 +1,16 @@
 package com.supensour.library.data.map;
 
-import com.supensour.library.utils.CollectionLib;
+import com.supensour.library.libs.CollectionLib;
 import org.junit.Test;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

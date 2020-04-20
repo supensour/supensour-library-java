@@ -1,4 +1,4 @@
-package com.supensour.library.utils;
+package com.supensour.library.libs;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,18 +9,18 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import static com.supensour.library.utils.DateTimeLib.LOCALE_INDONESIA;
-import static com.supensour.library.utils.DateTimeLib.LOCALE_SINGAPORE;
-import static com.supensour.library.utils.DateTimeLib.TZ_JAKARTA;
-import static com.supensour.library.utils.DateTimeLib.TZ_JAYAPURA;
-import static com.supensour.library.utils.DateTimeLib.TZ_MAKASSAR;
-import static com.supensour.library.utils.DateTimeLib.TZ_SINGAPORE;
-import static com.supensour.library.utils.DateTimeLib.TZ_UTC;
-import static com.supensour.library.utils.DateTimeLib.currentDate;
-import static com.supensour.library.utils.DateTimeLib.currentMillis;
-import static com.supensour.library.utils.DateTimeLib.formatDate;
-import static com.supensour.library.utils.DateTimeLib.getEndOfDay;
-import static com.supensour.library.utils.DateTimeLib.getStartOfDay;
+import static com.supensour.library.libs.DateTimeLib.LOCALE_INDONESIA;
+import static com.supensour.library.libs.DateTimeLib.LOCALE_SINGAPORE;
+import static com.supensour.library.libs.DateTimeLib.TZ_JAKARTA;
+import static com.supensour.library.libs.DateTimeLib.TZ_JAYAPURA;
+import static com.supensour.library.libs.DateTimeLib.TZ_MAKASSAR;
+import static com.supensour.library.libs.DateTimeLib.TZ_SINGAPORE;
+import static com.supensour.library.libs.DateTimeLib.TZ_UTC;
+import static com.supensour.library.libs.DateTimeLib.currentDate;
+import static com.supensour.library.libs.DateTimeLib.currentMillis;
+import static com.supensour.library.libs.DateTimeLib.formatDate;
+import static com.supensour.library.libs.DateTimeLib.getEndOfDay;
+import static com.supensour.library.libs.DateTimeLib.getStartOfDay;
 import static org.junit.Assert.*;
 
 /**

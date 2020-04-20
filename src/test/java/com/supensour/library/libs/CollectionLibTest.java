@@ -1,4 +1,4 @@
-package com.supensour.library.utils;
+package com.supensour.library.libs;
 
 import com.supensour.library.data.Pair;
 import com.supensour.library.data.map.MultiValueHashMap;
