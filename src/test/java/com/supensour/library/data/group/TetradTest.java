@@ -1,4 +1,4 @@
-package com.supensour.library.data;
+package com.supensour.library.data.group;
 
 import org.junit.Test;
 
@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Suprayan Yapura
- * @since March 29, 2020
+ * @since 1.0.0
  */
 public class TetradTest {
 
@@ -25,11 +25,11 @@ public class TetradTest {
 
   @Test
   public void of() {
-    Tetrad pair = Tetrad.of("Suprayan", "Yapura", 1, 2);
+    Tetrad<String, String, Integer, Integer> pair = Tetrad.of("Suprayan", "Yapura", 1, 2);
     assertEquals("Suprayan", pair.getFirst());
     assertEquals("Yapura", pair.getSecond());
-    assertEquals(1, pair.getThird());
-    assertEquals(2, pair.getFourth());
+    assertEquals(1, pair.getThird().intValue());
+    assertEquals(2, pair.getFourth().intValue());
   }
 
 }

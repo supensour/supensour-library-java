@@ -1,4 +1,4 @@
-package com.supensour.library.data;
+package com.supensour.library.data.group;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author Suprayan Yapura
- * @since March 29, 2020
+ * @since 1.0.0
  */
 @Data
 @NoArgsConstructor(staticName = "empty")

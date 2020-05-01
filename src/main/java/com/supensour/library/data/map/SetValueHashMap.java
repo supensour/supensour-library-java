@@ -10,13 +10,13 @@ import java.util.function.Supplier;
 
 /**
  * @author Suprayan Yapura
- * @since April 20, 2020
+ * @since 1.0.0
  */
 public class SetValueHashMap<K, V> extends AbstractEmbeddedMap<K, Set<V>> implements SetValueMap<K, V>, Cloneable, Serializable {
 
   private static final long serialVersionUID = -3684709001281501910L;
 
-  private Supplier<? extends Set<V>> collectionSupplier;
+  private final Supplier<? extends Set<V>> collectionSupplier;
 
   public SetValueHashMap(int initialCapacity, float loadFactor, Supplier<? extends Set<V>> collectionSupplier) {
     this.innerMap = new HashMap<>(initialCapacity, loadFactor);
@@ -132,7 +132,7 @@ public class SetValueHashMap<K, V> extends AbstractEmbeddedMap<K, Set<V>> implem
     for (Entry<K, Set<V>> entry: entrySet()) {
       Set<V> values = Optional.ofNullable(entry.getValue())
           .map(this::cloneValues)
-          .orElseGet(entry::getValue);
+          .orElse(null);
       map.put(entry.getKey(), values);
     }
     return map;

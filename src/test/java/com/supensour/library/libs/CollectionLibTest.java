@@ -1,6 +1,6 @@
 package com.supensour.library.libs;
 
-import com.supensour.library.data.Pair;
+import com.supensour.library.data.group.Pair;
 import com.supensour.library.data.map.MultiValueHashMap;
 import com.supensour.library.data.map.MultiValueMap;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Suprayan Yapura
- * @since March 29, 2020
+ * @since 1.0.0
  */
 public class CollectionLibTest {
 
@@ -46,6 +46,20 @@ public class CollectionLibTest {
   }
 
   @Test
+  public void isNotEmptyIterable() {
+    List<Integer> list = new ArrayList<>();
+    list.add(1);
+    assertTrue(CollectionLib.isNotEmpty((Iterable<Integer>)list));
+  }
+
+  @Test
+  public void isNotEmptyArray() {
+    List<Integer> list = new ArrayList<>();
+    list.add(1);
+    assertTrue(CollectionLib.isNotEmpty(list.toArray()));
+  }
+
+  @Test
   public void isEmptyMap() {
     Map<Integer, Integer> map = new HashMap<>();
     assertTrue(CollectionLib.isEmpty(map));
@@ -67,6 +81,20 @@ public class CollectionLibTest {
     assertTrue(CollectionLib.isEmpty(list));
     list = null;
     assertTrue(CollectionLib.isEmpty(list));
+  }
+
+  @Test
+  public void isEmptyIterable() {
+    List<Integer> list = new ArrayList<>();
+    assertTrue(CollectionLib.isEmpty((Iterable<Integer>) list));
+    list = null;
+    assertTrue(CollectionLib.isEmpty((Iterable<Integer>) list));
+  }
+
+  @Test
+  public void isEmptyArray() {
+    assertTrue(CollectionLib.isEmpty(new String[] {}));
+    assertTrue(CollectionLib.isEmpty((Integer[]) null));
   }
 
   @Test

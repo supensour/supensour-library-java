@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * @author Suprayan Yapura
- * @since April 20, 2020
+ * @since 1.0.0
  */
 public interface BaseMultiValueMap<K, V, C extends Collection<V>> extends Map<K, C> {
 

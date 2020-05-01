@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Suprayan Yapura
- * @since March 29, 2020
+ * @since 1.0.0
  */
 public class RandomLibTest {
 

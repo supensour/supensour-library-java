@@ -10,14 +10,14 @@ import java.util.function.Supplier;
 
 /**
  * @author Suprayan Yapura
- * @since April 20, 2020
+ * @since 1.0.0
  */
 public class MultiValueHashMap<K, V> extends AbstractEmbeddedMap<K, List<V>>
     implements MultiValueMap<K, V>, Cloneable, Serializable {
 
   private static final long serialVersionUID = 4762706715344820810L;
 
-  private Supplier<? extends List<V>> collectionSupplier;
+  private final Supplier<? extends List<V>> collectionSupplier;
 
   public MultiValueHashMap(int initialCapacity, float loadFactor, Supplier<? extends List<V>> collectionSupplier) {
     this.innerMap = new HashMap<>(initialCapacity, loadFactor);
@@ -133,7 +133,7 @@ public class MultiValueHashMap<K, V> extends AbstractEmbeddedMap<K, List<V>>
     for (Entry<K, List<V>> entry: entrySet()) {
       List<V> values = Optional.ofNullable(entry.getValue())
           .map(this::cloneValues)
-          .orElseGet(entry::getValue);
+          .orElse(null);
       map.put(entry.getKey(), values);
     }
     return map;

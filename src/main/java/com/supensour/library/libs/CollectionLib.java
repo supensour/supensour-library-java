@@ -1,6 +1,6 @@
 package com.supensour.library.libs;
 
-import com.supensour.library.data.Pair;
+import com.supensour.library.data.group.Pair;
 import com.supensour.library.data.map.BaseMultiValueMap;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 
 /**
  * @author Suprayan Yapura
- * @since April 19, 2020
+ * @since 1.0.0
  */
 public class CollectionLib {
 
@@ -28,7 +28,7 @@ public class CollectionLib {
   private final static Map<?, ?> EMPTY_UNMODIFIABLE_MAP = Collections.unmodifiableMap(new HashMap<>());
 
   /**
-   * To check if whether given map is not empty
+   * To check whether given map is not empty
    *
    * @param map   the map to be checked
    * @return true only if the map is not empty
@@ -40,7 +40,7 @@ public class CollectionLib {
   }
 
   /**
-   * To check if whether given multi value map is not empty
+   * To check whether given multi value map is not empty
    *
    * @param multiValueMap   the multi value map to be checked
    * @return true only if the multi value map is not empty
@@ -52,10 +52,10 @@ public class CollectionLib {
   }
 
   /**
-   * To check if whether given collection is not empty
+   * To check whether given collection is not empty
    *
    * @param collection  the collection to be checked
-   * @return true only if the map is not empty
+   * @return true only if the collection is not empty
    */
   public static boolean isNotEmpty(Collection<?> collection) {
     return Optional.ofNullable(collection)
@@ -64,7 +64,31 @@ public class CollectionLib {
   }
 
   /**
-   * To check if whether given map is null or empty
+   * To check whether given iterable is not empty
+   *
+   * @param iterable  the iterable to be checked
+   * @return true only if the iterable is not empty
+   */
+  public static boolean isNotEmpty(Iterable<?> iterable) {
+    return Optional.ofNullable(iterable)
+        .filter(i -> i.iterator().hasNext())
+        .isPresent();
+  }
+
+  /**
+   * To check whether given array is not empty
+   *
+   * @param array  the array to be checked
+   * @return true only if the array is not empty
+   */
+  public static boolean isNotEmpty(Object[] array) {
+    return Optional.ofNullable(array)
+        .filter(a -> a.length > 0)
+        .isPresent();
+  }
+
+  /**
+   * To check whether given map is null or empty
    *
    * @param map   the map to be checked
    * @return true only if the map is null or empty
@@ -74,7 +98,7 @@ public class CollectionLib {
   }
 
   /**
-   * To check if whether given multi value map is null or empty
+   * To check whether given multi value map is null or empty
    *
    * @param multiValueMap   the multi value map to be checked
    * @return true only if the multi value map is null or empty
@@ -84,13 +108,33 @@ public class CollectionLib {
   }
 
   /**
-   * To check if whether given collection is null or empty
+   * To check whether given collection is null or empty
    *
    * @param collection  the collection to be checked
-   * @return true only if the map is null or empty
+   * @return true only if the collection is null or empty
    */
   public static boolean isEmpty(Collection<?> collection) {
     return !isNotEmpty(collection);
+  }
+
+  /**
+   * To check whether given iterable is null or empty
+   *
+   * @param iterable  the iterable to be checked
+   * @return true only if the iterable is null or empty
+   */
+  public static boolean isEmpty(Iterable<?> iterable) {
+    return !isNotEmpty(iterable);
+  }
+
+  /**
+   * To check whether given array is null or empty
+   *
+   * @param array  the array to be checked
+   * @return true only if the array is null or empty
+   */
+  public static boolean isEmpty(Object[] array) {
+    return !isNotEmpty(array);
   }
 
   /**

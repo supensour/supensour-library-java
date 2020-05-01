@@ -11,7 +11,7 @@ import java.util.TimeZone;
 
 /**
  * @author Suprayan Yapura
- * @since April 05, 2020
+ * @since 1.0.0
  */
 public class DateTimeLib {
 

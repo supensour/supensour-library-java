@@ -5,7 +5,7 @@ import java.util.UUID;
 
 /**
  * @author Suprayan Yapura
- * @since March 29, 2020
+ * @since 1.0.0
  */
 public class RandomLib {
 
