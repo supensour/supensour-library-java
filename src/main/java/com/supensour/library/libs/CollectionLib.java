@@ -1,7 +1,7 @@
 package com.supensour.library.libs;
 
-import com.supensour.library.data.group.Pair;
-import com.supensour.library.data.map.BaseMultiValueMap;
+import com.supensour.library.model.group.Pair;
+import com.supensour.library.model.map.BaseMultiValueMap;
 
 import java.util.ArrayList;
 import java.util.Arrays;

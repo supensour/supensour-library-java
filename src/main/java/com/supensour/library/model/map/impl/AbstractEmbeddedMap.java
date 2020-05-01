@@ -1,4 +1,4 @@
-package com.supensour.library.data.map;
+package com.supensour.library.model.map.impl;
 
 import java.util.Collection;
 import java.util.Map;

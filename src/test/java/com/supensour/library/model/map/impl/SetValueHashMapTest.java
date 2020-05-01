@@ -1,6 +1,7 @@
-package com.supensour.library.data.map;
+package com.supensour.library.model.map.impl;
 
 import com.supensour.library.libs.CollectionLib;
+import com.supensour.library.model.map.SetValueMap;
 import org.junit.Test;
 
 import java.util.AbstractMap.SimpleEntry;

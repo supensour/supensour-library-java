@@ -1,4 +1,4 @@
-package com.supensour.library.data.group;
+package com.supensour.library.model.group;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
