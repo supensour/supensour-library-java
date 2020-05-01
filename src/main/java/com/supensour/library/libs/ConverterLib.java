@@ -22,9 +22,12 @@ public class ConverterLib {
    * Copy properties from source to target.
    * If either source/target object is null, the original target will be returned.
    *
-   * @param source  source object to be copied from
-   * @param target  target object to be copied to
-   * @param ignoreProperties list of property names to be ignored
+   * @param source            source object to be copied from
+   * @param target            target object to be copied to
+   * @param ignoreProperties  list of property names to be ignored
+   *
+   * @param <R>               request
+   * @param <T>               target
    *
    * @return the target
    */
@@ -39,9 +42,12 @@ public class ConverterLib {
    * Copy properties from source to the target object provided by targetSupplier.
    * If either source/target object is null, the original target will be returned.
    *
-   * @param source          source object to be copied from
-   * @param targetSupplier  target supplier to provide target object
-   * @param ignoreProperties list of property names to be ignored
+   * @param source            source object to be copied from
+   * @param targetSupplier    target supplier to provide target object
+   * @param ignoreProperties  list of property names to be ignored
+   *
+   * @param <R>               request
+   * @param <T>               target
    *
    * @throws NullPointerException if targetSupplier is null
    * @return the target
@@ -56,9 +62,12 @@ public class ConverterLib {
    * For each source, if either the source/target object is null, the original target will be returned.
    * In case of empty/null sources, empty List will be returned.
    *
-   * @param sources         a collection of source objects to be copied from
-   * @param targetSupplier  target supplier to provide target object
-   * @param ignoreProperties list of property names to be ignored
+   * @param sources           a collection of source objects to be copied from
+   * @param targetSupplier    target supplier to provide target object
+   * @param ignoreProperties  list of property names to be ignored
+   *
+   * @param <R>               request
+   * @param <T>               target
    *
    * @throws NullPointerException if targetSupplier is null
    * @return the target

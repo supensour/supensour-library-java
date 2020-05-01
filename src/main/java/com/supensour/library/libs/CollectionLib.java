@@ -142,6 +142,8 @@ public class CollectionLib {
    *
    * @param values  values to be collected to list
    *
+   * @param <T>     type
+   *
    * @return a list contains collected values
    */
   @SafeVarargs
@@ -154,6 +156,8 @@ public class CollectionLib {
    *
    * @param values  values to be collected to set
    *
+   * @param <T>     type
+   *
    * @return a set contains unique collected values
    */
   @SafeVarargs
@@ -165,11 +169,14 @@ public class CollectionLib {
    * Add value to map.
    *
    * This is an overloaded method that receive {@link Pair}.
-   * The key should be stored as {@link Pair#setFirst(K)}.
-   * The value should be stored as {@link Pair#setSecond(V)}.
+   * The key should be stored as {@link Pair} first.
+   * The value should be stored as {@link Pair} second.
    *
    * @param map     the map to be added to
    * @param kvPair  a pair contains of key and value to be added
+   *
+   * @param <K>     key
+   * @param <V>     value
    *
    * @throws NullPointerException if kvPair or the key is null
    * @return map
@@ -187,6 +194,9 @@ public class CollectionLib {
    * @param map     the map to be added to
    * @param entry   a map entry
    *
+   * @param <K>     key
+   * @param <V>     value
+   *
    * @throws NullPointerException if entry or the key is null
    * @return map
    */
@@ -202,6 +212,9 @@ public class CollectionLib {
    * @param key     the key where the value to be added on
    * @param value   the value to be added
    *
+   * @param <K>     key
+   * @param <V>     value
+   *
    * @throws NullPointerException if the key is null
    * @return map
    */
@@ -216,11 +229,14 @@ public class CollectionLib {
    * Add value to map.
    *
    * This is an overloaded method that receive {@link Pair}.
-   * The key should be stored as {@link Pair#setFirst(K)}.
-   * The value should be stored as {@link Pair#setSecond(V)}.
+   * The key should be stored as {@link Pair} first.
+   * The value should be stored as {@link Pair} second.
    *
    * @param mapSupplier   supplier of the map to be added to
    * @param kvPair        a pair contains of key and value to be added
+   *
+   * @param <K>           key
+   * @param <V>           value
    *
    * @throws NullPointerException if mapSupplier, kvPair or the key is null
    * @return map
@@ -238,6 +254,9 @@ public class CollectionLib {
    * @param mapSupplier   supplier of the map to be added to
    * @param entry         a map entry
    *
+   * @param <K>           key
+   * @param <V>           value
+   *
    * @throws NullPointerException if mapSupplier, entry or the key is null
    * @return map
    */
@@ -253,6 +272,9 @@ public class CollectionLib {
    * @param key           the key where the value to be added on
    * @param value         the value to be added
    *
+   * @param <K>           key
+   * @param <V>           value
+   *
    * @throws NullPointerException if mapSupplier or the key is null
    * @return map
    */
@@ -267,6 +289,10 @@ public class CollectionLib {
    *
    * @param target    the target variable where the sources to be appended to
    * @param sources   list of collections to be appended to the target
+   *
+   * @param <T>       type
+   * @param <C>       collection
+   *
    * @return the target
    */
   @SafeVarargs
@@ -285,6 +311,9 @@ public class CollectionLib {
    * @param targetSupplier  the target supplier where the sources to be appended to
    * @param sources         list of collections to be appended to the target
    *
+   * @param <T>             type
+   * @param <C>             collection
+   *
    * @throws NullPointerException if targetSupplier is null
    * @return the target
    */
@@ -300,6 +329,11 @@ public class CollectionLib {
    *
    * @param target    the target variable where the sources to be appended to
    * @param sources   list of maps to be appended to the target
+   *
+   * @param <K>       key
+   * @param <V>       value
+   * @param <M>       map
+   *
    * @return the target
    */
   @SafeVarargs
@@ -317,6 +351,10 @@ public class CollectionLib {
    *
    * @param targetSupplier  the target supplier where the sources to be appended to
    * @param sources         list of maps to be appended to the target
+   *
+   * @param <K>             key
+   * @param <V>             value
+   * @param <M>             map
    *
    * @throws NullPointerException if targetSupplier is null
    * @return the target
