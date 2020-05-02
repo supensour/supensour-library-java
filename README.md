@@ -2,6 +2,8 @@
 
 [ ![Download](https://api.bintray.com/packages/supensour/maven-releases/supensour-springboot-library/images/download.svg) ](https://bintray.com/supensour/maven-releases/supensour-springboot-library/_latestVersion)
 ![Build](https://github.com/supensour/supensour-springboot-library/workflows/Build/badge.svg)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.supensour%3Asupensour-springboot-library&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.supensour%3Asupensour-springboot-library)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.supensour%3Asupensour-springboot-library&metric=coverage)](https://sonarcloud.io/dashboard?id=com.supensour%3Asupensour-springboot-library)
 
 ## About
 This library is for used with spring boot project. Detailed documentation will be provided soon.
