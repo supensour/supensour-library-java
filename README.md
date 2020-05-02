@@ -1,6 +1,7 @@
 # Supensour Springboot Library
 
 [ ![Download](https://api.bintray.com/packages/supensour/maven-releases/supensour-springboot-library/images/download.svg) ](https://bintray.com/supensour/maven-releases/supensour-springboot-library/_latestVersion)
+![Build](https://github.com/supensour/supensour-springboot-library/workflows/Build/badge.svg)
 
 ## About
 This library is for used with spring boot project. Detailed documentation will be provided soon.
