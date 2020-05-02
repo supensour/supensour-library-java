@@ -23,6 +23,8 @@ import java.util.function.Supplier;
  */
 public class CollectionLib {
 
+  private CollectionLib() {}
+
   private final static Set<?> EMPTY_UNMODIFIABLE_SET = Collections.unmodifiableSet(new HashSet<>());
   private final static List<?> EMPTY_UNMODIFIABLE_LIST = Collections.unmodifiableList(new ArrayList<>());
   private final static Map<?, ?> EMPTY_UNMODIFIABLE_MAP = Collections.unmodifiableMap(new HashMap<>());

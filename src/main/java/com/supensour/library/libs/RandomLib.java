@@ -1,5 +1,6 @@
 package com.supensour.library.libs;
 
+import java.security.SecureRandom;
 import java.util.Random;
 import java.util.UUID;
 
@@ -9,7 +10,7 @@ import java.util.UUID;
  */
 public class RandomLib {
 
-  protected final static Random random = new Random();
+  protected final static Random random = new SecureRandom();
 
   public enum RandomType {
     DIGIT,

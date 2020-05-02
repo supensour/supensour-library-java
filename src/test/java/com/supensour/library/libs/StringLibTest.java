@@ -29,6 +29,13 @@ public class StringLibTest {
     assertEquals("su", matches.get(0));
     assertEquals("ra", matches.get(1));
     assertEquals("su", matches.get(2));
+
+    matches = StringLib.match("supra-supra", "(su|ra)", 4);
+    assertEquals(4, matches.size());
+    assertEquals("su", matches.get(0));
+    assertEquals("ra", matches.get(1));
+    assertEquals("su", matches.get(2));
+    assertEquals("ra", matches.get(3));
   }
 
   @Test

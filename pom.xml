@@ -21,6 +21,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>11</java.version>
+    <sonar.coverage.exclusions>
+      **/com/supensour/library/model/error/**,
+      **/com/supensour/library/model/group/**,
+      **/com/supensour/library/model/web/**
+    </sonar.coverage.exclusions>
   </properties>
 
   <dependencies>
@@ -77,6 +82,26 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-report</id>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-check</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
           <rules>
             <rule implementation="org.jacoco.maven.RuleConfiguration">
@@ -96,6 +121,31 @@
             </rule>
           </rules>
         </configuration>
+<!--        <configuration>-->
+<!--          <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>-->
+<!--          <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>-->
+<!--          <output>file</output>-->
+<!--          <append>true</append>-->
+<!--          <excludes>-->
+<!--            <exclude>*MethodAccess</exclude>-->
+<!--          </excludes>-->
+<!--        </configuration>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>jacoco-initialize</id>-->
+<!--            <goals>-->
+<!--              <goal>prepare-agent</goal>-->
+<!--            </goals>-->
+<!--            <phase>test-compile</phase>-->
+<!--          </execution>-->
+<!--          <execution>-->
+<!--            <id>jacoco-site</id>-->
+<!--            <phase>verify</phase>-->
+<!--            <goals>-->
+<!--              <goal>report</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
+<!--        </executions>-->
       </plugin>
     </plugins>
   </build>

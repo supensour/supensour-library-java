@@ -20,6 +20,8 @@ import java.util.Optional;
  */
 public class ErrorLib {
 
+  private ErrorLib() {}
+
   public static final String SEPARATOR = ".";
   public static final String PATH = "path";
 

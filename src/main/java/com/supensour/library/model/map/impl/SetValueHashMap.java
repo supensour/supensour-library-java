@@ -1,5 +1,6 @@
 package com.supensour.library.model.map.impl;
 
+import com.supensour.library.libs.CollectionLib;
 import com.supensour.library.model.map.SetValueMap;
 
 import java.io.Serializable;
@@ -51,7 +52,7 @@ public class SetValueHashMap<K, V> extends AbstractEmbeddedMap<K, Set<V>> implem
   @Override
   public V getFirst(K key) {
     return Optional.ofNullable(get(key))
-        .filter(values -> !values.isEmpty())
+        .filter(CollectionLib::isNotEmpty)
         .flatMap(values -> values.stream().findFirst())
         .orElse(null);
   }

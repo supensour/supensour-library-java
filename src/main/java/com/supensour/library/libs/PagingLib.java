@@ -17,9 +17,11 @@ import java.util.stream.Collectors;
  */
 public class PagingLib {
 
+  private PagingLib () {}
+
   public static Pageable toPageable(PagingRequest page) {
     Sort sort = Optional.ofNullable(page.getSorts())
-        .filter(sorts -> !sorts.isEmpty())
+        .filter(CollectionLib::isNotEmpty)
         .map(PagingLib::toOrders)
         .map(Sort::by)
         .orElseGet(Sort::unsorted);

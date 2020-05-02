@@ -1,5 +1,6 @@
 package com.supensour.library.model.map.impl;
 
+import com.supensour.library.libs.CollectionLib;
 import com.supensour.library.model.map.MultiValueMap;
 
 import java.io.Serializable;
@@ -52,7 +53,7 @@ public class MultiValueHashMap<K, V> extends AbstractEmbeddedMap<K, List<V>>
   @Override
   public V getFirst(K key) {
     return Optional.ofNullable(get(key))
-        .filter(values -> !values.isEmpty())
+        .filter(CollectionLib::isNotEmpty)
         .flatMap(values -> values.stream().findFirst())
         .orElse(null);
   }

@@ -14,6 +14,8 @@ import java.util.function.Function;
  */
 public class ResponseLib {
 
+  private ResponseLib() {}
+
   public static <T> Response<T> status(HttpStatus status, T data, PagingResponse page) {
     return Response.<T>builder()
         .data(data)

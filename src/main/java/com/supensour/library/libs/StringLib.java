@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
  */
 public class StringLib {
 
+  private StringLib() {}
+
   /**
    * Get all matches with regular expression in a string value.
    *
@@ -43,7 +45,7 @@ public class StringLib {
   public static List<String> match(String value, String regex, int maxCount) {
     List<String> matches = new ArrayList<>();
     Matcher matcher = getMatcher(value, regex);
-    for(int i=0; i<maxCount && matcher.find(); i++) {
+    while(matcher.find() && matches.size() < maxCount) {
       matches.add(matcher.group());
     }
     return matches;

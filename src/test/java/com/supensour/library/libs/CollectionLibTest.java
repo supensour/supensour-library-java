@@ -63,6 +63,8 @@ public class CollectionLibTest {
   public void isEmptyMap() {
     Map<Integer, Integer> map = new HashMap<>();
     assertTrue(CollectionLib.isEmpty(map));
+    map.put(1, 1);
+    assertFalse(CollectionLib.isEmpty(map));
     map = null;
     assertTrue(CollectionLib.isEmpty(map));
   }
@@ -71,6 +73,8 @@ public class CollectionLibTest {
   public void isEmptyMultiValueMap() {
     MultiValueMap<Integer, Integer> map = new MultiValueHashMap<>();
     assertTrue(CollectionLib.isEmpty(map));
+    map.add(1, 1);
+    assertFalse(CollectionLib.isEmpty(map));
     map = null;
     assertTrue(CollectionLib.isEmpty(map));
   }
@@ -79,6 +83,8 @@ public class CollectionLibTest {
   public void isEmptyCollection() {
     List<Integer> list = new ArrayList<>();
     assertTrue(CollectionLib.isEmpty(list));
+    list.add(1);
+    assertFalse(CollectionLib.isEmpty(list));
     list = null;
     assertTrue(CollectionLib.isEmpty(list));
   }
@@ -87,12 +93,17 @@ public class CollectionLibTest {
   public void isEmptyIterable() {
     List<Integer> list = new ArrayList<>();
     assertTrue(CollectionLib.isEmpty((Iterable<Integer>) list));
+    list.add(1);
+    assertFalse(CollectionLib.isEmpty((Iterable<Integer>) list));
     list = null;
     assertTrue(CollectionLib.isEmpty((Iterable<Integer>) list));
   }
 
   @Test
   public void isEmptyArray() {
+    List<Integer> list = new ArrayList<>();
+    list.add(1);
+    assertFalse(CollectionLib.isEmpty(list.toArray()));
     assertTrue(CollectionLib.isEmpty(new String[] {}));
     assertTrue(CollectionLib.isEmpty((Integer[]) null));
   }
