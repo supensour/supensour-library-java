@@ -103,6 +103,11 @@
           </execution>
         </executions>
         <configuration>
+          <excludes>
+            <exclude>**/com/supensour/library/model/error/**</exclude>
+            <exclude>**/com/supensour/library/model/group/**</exclude>
+            <exclude>**/com/supensour/library/model/web/**</exclude>
+          </excludes>
           <rules>
             <rule implementation="org.jacoco.maven.RuleConfiguration">
               <element>BUNDLE</element>
@@ -121,31 +126,6 @@
             </rule>
           </rules>
         </configuration>
-<!--        <configuration>-->
-<!--          <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>-->
-<!--          <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>-->
-<!--          <output>file</output>-->
-<!--          <append>true</append>-->
-<!--          <excludes>-->
-<!--            <exclude>*MethodAccess</exclude>-->
-<!--          </excludes>-->
-<!--        </configuration>-->
-<!--        <executions>-->
-<!--          <execution>-->
-<!--            <id>jacoco-initialize</id>-->
-<!--            <goals>-->
-<!--              <goal>prepare-agent</goal>-->
-<!--            </goals>-->
-<!--            <phase>test-compile</phase>-->
-<!--          </execution>-->
-<!--          <execution>-->
-<!--            <id>jacoco-site</id>-->
-<!--            <phase>verify</phase>-->
-<!--            <goals>-->
-<!--              <goal>report</goal>-->
-<!--            </goals>-->
-<!--          </execution>-->
-<!--        </executions>-->
       </plugin>
     </plugins>
   </build>
