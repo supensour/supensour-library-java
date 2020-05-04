@@ -26,3 +26,11 @@ This library is for used with spring boot project. Detailed documentation will b
     <url>https://dl.bintray.com/supensour/maven-releases</url>
 </repository>
 ```
+In addition, this library has been included in [Bintray JCenter](https://bintray.com/bintray/jcenter).
+```xml
+<repository>
+    <id>bintray-jcenter</id>
+    <name>bintray-jcenter</name>
+    <url>https://jcenter.bintray.com</url>
+</repository>
+```
