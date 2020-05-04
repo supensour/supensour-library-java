@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @author Suprayan Yapura
- * @since June 07, 2019
+ * @since 1.0.0
  */
 @Slf4j
 @RestControllerAdvice

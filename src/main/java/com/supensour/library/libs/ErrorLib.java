@@ -1,7 +1,5 @@
 package com.supensour.library.libs;
 
-import com.supensour.library.model.map.impl.SetValueHashMap;
-import com.supensour.library.model.map.SetValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
@@ -11,7 +9,9 @@ import javax.validation.Path;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -25,34 +25,34 @@ public class ErrorLib {
   public static final String SEPARATOR = ".";
   public static final String PATH = "path";
 
-  public static SetValueMap<String, String> mapFromBindingResult(BindingResult bindingResult) {
+  public static Map<String, List<String>> mapFromBindingResult(BindingResult bindingResult) {
     return Optional.ofNullable(bindingResult)
         .filter(Errors::hasErrors)
         .map(Errors::getFieldErrors)
         .map(ErrorLib::mapFromFieldErrors)
-        .orElseGet(SetValueHashMap::new);
+        .orElseGet(HashMap::new);
   }
 
-  public static SetValueMap<String, String> mapFromFieldErrors(Collection<? extends FieldError> fieldErrors) {
+  public static Map<String, List<String>> mapFromFieldErrors(Collection<? extends FieldError> fieldErrors) {
     return Optional.ofNullable(fieldErrors)
         .map(errors -> errors.stream()
             .map(fieldError -> new SimpleEntry<>(fieldError.getField(), fieldError.getDefaultMessage()))
-            .collect(SetValueHashMap<String, String>::new, SetValueMap::add, SetValueMap::addAll))
-        .orElseGet(SetValueHashMap::new);
+            .collect(HashMap<String, List<String>>::new, CollectionLib::addToMultiValueMap, CollectionLib::addAllToMultiValueMap))
+        .orElseGet(HashMap::new);
   }
 
-  public static SetValueMap<String, String> mapFromConstraintViolations(Collection<? extends ConstraintViolation<?>> constraintViolations) {
+  public static Map<String, List<String>> mapFromConstraintViolations(Collection<? extends ConstraintViolation<?>> constraintViolations) {
     return Optional.ofNullable(constraintViolations)
         .map(errors -> errors.stream()
             .map(ErrorLib::mapFromConstraintViolation)
-            .collect(SetValueHashMap<String, String>::new, SetValueMap::addAll, SetValueMap::addAll))
-        .orElseGet(SetValueHashMap::new);
+            .collect(HashMap<String, List<String>>::new, CollectionLib::addAllToMultiValueMap, CollectionLib::addAllToMultiValueMap))
+        .orElseGet(HashMap::new);
   }
 
-  public static SetValueMap<String, String> mapFromConstraintViolation(ConstraintViolation<?> constraintViolation) {
+  public static Map<String, List<String>> mapFromConstraintViolation(ConstraintViolation<?> constraintViolation) {
     return getConstraintViolationPaths(constraintViolation).stream()
         .map(path -> new SimpleEntry<>(path, constraintViolation.getMessage()))
-        .collect(SetValueHashMap::new, SetValueMap::add, SetValueMap::addAll);
+        .collect(HashMap::new, CollectionLib::addToMultiValueMap, CollectionLib::addAllToMultiValueMap);
   }
 
   public static List<String> getConstraintViolationPaths(ConstraintViolation<?> constraintViolation) {

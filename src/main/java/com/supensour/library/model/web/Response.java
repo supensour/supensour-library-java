@@ -1,12 +1,14 @@
 package com.supensour.library.model.web;
 
-import com.supensour.library.model.map.impl.SetValueHashMap;
-import com.supensour.library.model.map.SetValueMap;
 import com.supensour.library.model.error.ErrorMapping;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Suprayan Yapura
@@ -27,7 +29,7 @@ public class Response<T> implements ErrorMapping<Response<T>> {
   private T data;
 
   @Builder.Default
-  private SetValueMap<String, String> errors = new SetValueHashMap<>();
+  private Map<String, List<String>> errors = new HashMap<>();
 
   private PagingResponse page;
 

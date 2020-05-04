@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.function.Supplier;
 
@@ -180,6 +181,138 @@ public class CollectionLibTest {
     assertTrue(map.containsKey("1"));
     assertEquals(1, map.size());
     assertEquals(1, map.get("1").intValue());
+  }
+
+  @Test
+  public void addToMultiValueMapWithPair() {
+    Pair<Integer, Integer> pair = Pair.of(1, 2);
+    Map<Integer, List<Integer>> map = CollectionLib.addToMultiValueMap((Map<Integer, List<Integer>>) null, pair);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addToMultiValueMapWithEntry() {
+    Entry<Integer, Integer> entry = new SimpleEntry<>(1, 2);
+    Map<Integer, List<Integer>> map = CollectionLib.addToMultiValueMap((Map<Integer, List<Integer>>) null, entry);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addToMultiValueMapWithSingleValueMap() {
+    Map<Integer, Integer> other = new HashMap<>();
+    other.put(1, 2);
+    Map<Integer, List<Integer>> map = CollectionLib.addToMultiValueMap((Map<Integer, List<Integer>>) null, other);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addToMultiValueMapWithKeyValue() {
+    Map<Integer, List<Integer>> map = CollectionLib.addToMultiValueMap((Map<Integer, List<Integer>>) null, 1, 2);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addToMultiValueMapWithPairToSupplier() {
+    Pair<Integer, Integer> pair = Pair.of(1, 2);
+    Map<Integer, List<Integer>> map = CollectionLib.addToMultiValueMap(HashMap::new, pair);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addToMultiValueMapWithEntryToSupplier() {
+    Entry<Integer, Integer> entry = new SimpleEntry<>(1, 2);
+    Map<Integer, List<Integer>> map = CollectionLib.addToMultiValueMap(HashMap::new, entry);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addToMultiValueMapWithSingleValueMapToSupplier() {
+    Map<Integer, Integer> other = new HashMap<>();
+    other.put(1, 2);
+    Map<Integer, List<Integer>> map = CollectionLib.addToMultiValueMap(HashMap::new, other);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addToMultiValueMapWithKeyValueToSupplier() {
+    Map<Integer, List<Integer>> map = CollectionLib.addToMultiValueMap(HashMap::new, 1, 2);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addAllToMultiValueMapWithPair() {
+    Pair<Integer, Set<Integer>> pair = Pair.of(1, CollectionLib.toSet(2));
+    Map<Integer, List<Integer>> map = CollectionLib.addAllToMultiValueMap((Map<Integer, List<Integer>>) null, pair);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addAllToMultiValueMapWithEntry() {
+    Entry<Integer, Set<Integer>> entry = new SimpleEntry<>(1, CollectionLib.toSet(2));
+    Map<Integer, List<Integer>> map = CollectionLib.addAllToMultiValueMap((Map<Integer, List<Integer>>) null, entry);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addAllToMultiValueMapWithMultiValueMap() {
+    Map<Integer, Set<Integer>> other = new HashMap<>();
+    other.put(1, CollectionLib.toSet(2));
+    Map<Integer, List<Integer>> map = CollectionLib.addAllToMultiValueMap((Map<Integer, List<Integer>>) null, other);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addAllToMultiValueMapWithKeyValue() {
+    Set<Integer> value = new HashSet<>();
+    value.add(2);
+    Map<Integer, List<Integer>> map = CollectionLib.addAllToMultiValueMap((Map<Integer, List<Integer>>) null, 1, value);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addAllToMultiValueMapWithPairToSupplier() {
+    Pair<Integer, Set<Integer>> pair = Pair.of(1, CollectionLib.toSet(2));
+    Map<Integer, List<Integer>> map = CollectionLib.addAllToMultiValueMap(HashMap::new, pair);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addAllToMultiValueMapWithEntryToSupplier() {
+    Entry<Integer, Set<Integer>> entry = new SimpleEntry<>(1, CollectionLib.toSet(2));
+    Map<Integer, List<Integer>> map = CollectionLib.addAllToMultiValueMap(HashMap::new, entry);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addAllToMultiValueMapWithMultiValueMapToSupplier() {
+    Map<Integer, Set<Integer>> other = new HashMap<>();
+    other.put(1, CollectionLib.toSet(2));
+    Map<Integer, List<Integer>> map = CollectionLib.addAllToMultiValueMap(HashMap::new, other);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
+  }
+
+  @Test
+  public void addAllToMultiValueMapWithKeyValueToSupplier() {
+    Set<Integer> value = new HashSet<>();
+    value.add(2);
+    Map<Integer, List<Integer>> map = CollectionLib.addAllToMultiValueMap(HashMap::new, 1, value);
+    assertEquals(1, map.size());
+    assertEquals(CollectionLib.toList(2), map.get(1));
   }
 
   @Test

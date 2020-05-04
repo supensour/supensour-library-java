@@ -15,26 +15,26 @@ import java.util.TimeZone;
  */
 public class DateTimeLib {
 
-  public final static String TZ_NAME_UTC = "UTC";
-  public final static String TZ_NAME_JAKARTA = "Asia/Jakarta";
-  public final static String TZ_NAME_MAKASSAR = "Asia/Makassar";
-  public final static String TZ_NAME_JAYAPURA = "Asia/Jayapura";
-  public final static String TZ_NAME_SINGAPORE = "Asia/Singapore";
+  public static final String TZ_NAME_UTC = "UTC";
+  public static final String TZ_NAME_JAKARTA = "Asia/Jakarta";
+  public static final String TZ_NAME_MAKASSAR = "Asia/Makassar";
+  public static final String TZ_NAME_JAYAPURA = "Asia/Jayapura";
+  public static final String TZ_NAME_SINGAPORE = "Asia/Singapore";
 
-  public final static Locale LOCALE_INDONESIA = new Locale("id", "ID");
-  public final static Locale LOCALE_SINGAPORE = new Locale("en", "SG");
+  public static final Locale LOCALE_INDONESIA = new Locale("id", "ID");
+  public static final Locale LOCALE_SINGAPORE = new Locale("en", "SG");
 
-  public final static ZoneId ZI_UTC = ZoneId.of(TZ_NAME_UTC);
-  public final static ZoneId ZI_JAKARTA = ZoneId.of(TZ_NAME_JAKARTA);
-  public final static ZoneId ZI_MAKASSAR = ZoneId.of(TZ_NAME_MAKASSAR);
-  public final static ZoneId ZI_JAYAPURA = ZoneId.of(TZ_NAME_JAYAPURA);
-  public final static ZoneId ZI_SINGAPORE = ZoneId.of(TZ_NAME_SINGAPORE);
+  public static final ZoneId ZI_UTC = ZoneId.of(TZ_NAME_UTC);
+  public static final ZoneId ZI_JAKARTA = ZoneId.of(TZ_NAME_JAKARTA);
+  public static final ZoneId ZI_MAKASSAR = ZoneId.of(TZ_NAME_MAKASSAR);
+  public static final ZoneId ZI_JAYAPURA = ZoneId.of(TZ_NAME_JAYAPURA);
+  public static final ZoneId ZI_SINGAPORE = ZoneId.of(TZ_NAME_SINGAPORE);
 
-  public final static TimeZone TZ_UTC = TimeZone.getTimeZone(ZI_UTC);
-  public final static TimeZone TZ_JAKARTA = TimeZone.getTimeZone(ZI_JAKARTA);
-  public final static TimeZone TZ_MAKASSAR = TimeZone.getTimeZone(ZI_MAKASSAR);
-  public final static TimeZone TZ_JAYAPURA = TimeZone.getTimeZone(ZI_JAYAPURA);
-  public final static TimeZone TZ_SINGAPORE = TimeZone.getTimeZone(ZI_SINGAPORE);
+  public static final TimeZone TZ_UTC = TimeZone.getTimeZone(ZI_UTC);
+  public static final TimeZone TZ_JAKARTA = TimeZone.getTimeZone(ZI_JAKARTA);
+  public static final TimeZone TZ_MAKASSAR = TimeZone.getTimeZone(ZI_MAKASSAR);
+  public static final TimeZone TZ_JAYAPURA = TimeZone.getTimeZone(ZI_JAYAPURA);
+  public static final TimeZone TZ_SINGAPORE = TimeZone.getTimeZone(ZI_SINGAPORE);
 
   private DateTimeLib() {}
 

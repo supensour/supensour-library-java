@@ -1,8 +1,7 @@
 package com.supensour.library.web.error;
 
+import com.supensour.library.libs.CollectionLib;
 import com.supensour.library.model.error.RespondingException;
-import com.supensour.library.model.map.impl.SetValueHashMap;
-import com.supensour.library.model.map.SetValueMap;
 import com.supensour.library.libs.ErrorLib;
 import com.supensour.library.libs.ResponseLib;
 import com.supensour.library.model.web.Response;
@@ -20,6 +19,9 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Suprayan Yapura
@@ -33,15 +35,14 @@ public interface BaseErrorControllerHandler {
   @ExceptionHandler(MethodArgumentNotValidException.class)
   default Response<?> methodArgumentNotValidException(MethodArgumentNotValidException e) {
     getLogger().warn(getMessage(e), e);
-    SetValueMap<String, String> errors = ErrorLib.mapFromBindingResult(e.getBindingResult());
+    Map<String, List<String>> errors = ErrorLib.mapFromBindingResult(e.getBindingResult());
     return ResponseLib.badRequest(errors);
   }
 
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(MethodArgumentTypeMismatchException.class)
   default Response<?> methodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
-    SetValueMap<String, String> errors = new SetValueHashMap<>();
-    errors.add(e.getName(), e.getMessage());
+    Map<String, List<String>> errors = CollectionLib.addToMultiValueMap(HashMap::new, e.getName(), e.getMessage());
     return ResponseLib.badRequest(errors);
   }
 
@@ -49,7 +50,7 @@ public interface BaseErrorControllerHandler {
   @ExceptionHandler(BindException.class)
   default Response<?> bindingException(BindException e) {
     getLogger().warn(getMessage(e), e);
-    SetValueMap<String, String> errors = ErrorLib.mapFromBindingResult(e.getBindingResult());
+    Map<String, List<String>> errors = ErrorLib.mapFromBindingResult(e.getBindingResult());
     return ResponseLib.badRequest(errors);
   }
 

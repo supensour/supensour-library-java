@@ -1,7 +1,7 @@
 package com.supensour.library.libs;
 
-import com.supensour.library.model.map.impl.SetValueHashMap;
-import com.supensour.library.model.map.SetValueMap;
+import com.supensour.library.model.map.MultiValueMap;
+import com.supensour.library.model.map.impl.MultiValueHashMap;
 import com.supensour.library.sample.dto.Name;
 import com.supensour.library.sample.dto.NameRequest;
 import org.junit.Before;
@@ -15,6 +15,8 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -42,19 +44,19 @@ public class ErrorLibTest {
     bindingResult.addError(new FieldError("nameRequest", "firstName", "Blank"));
     bindingResult.addError(new FieldError("nameRequest", "lastName", "Blank"));
 
-    SetValueMap<String, String> errors = ErrorLib.mapFromBindingResult(bindingResult);
+    Map<String, List<String>> errors = ErrorLib.mapFromBindingResult(bindingResult);
     assertFalse(errors.isEmpty());
     assertEquals(2, errors.size());
     assertEquals(1, errors.get("firstName").size());
-    assertEquals("Blank", errors.get("firstName").iterator().next());
+    assertEquals("Blank", errors.get("firstName").get(0));
     assertEquals(1, errors.get("lastName").size());
-    assertEquals("Blank", errors.get("lastName").iterator().next());
+    assertEquals("Blank", errors.get("lastName").get(0));
   }
 
   @Test
   public void mapFromBindingResult_empty() {
     BindingResult bindingResult = new BeanPropertyBindingResult(null, "nameRequest");
-    SetValueMap<String, String> errors = ErrorLib.mapFromBindingResult(bindingResult);
+    Map<String, List<String>> errors = ErrorLib.mapFromBindingResult(bindingResult);
     assertTrue(errors.isEmpty());
   }
 
@@ -62,9 +64,9 @@ public class ErrorLibTest {
   public void mapFromConstraintViolations() {
     NameRequest nameRequest = new NameRequest(new Name("  \t\n  ", ""));
     Set<ConstraintViolation<NameRequest>> violations = validator.validate(nameRequest);
-    SetValueMap<String, String> errors = ErrorLib.mapFromConstraintViolations(violations);
+    Map<String, List<String>> errors = ErrorLib.mapFromConstraintViolations(violations);
 
-    SetValueMap<String, String> expectation = new SetValueHashMap<>();
+    MultiValueMap<String, String> expectation = new MultiValueHashMap<>();
     expectation.set("name", "InvalidName");
     expectation.set("customNamePath", "InvalidName");
     expectation.set("name.firstName", "Blank");
@@ -82,7 +84,7 @@ public class ErrorLibTest {
     Set<ConstraintViolation<NameRequest>> violations = validator.validate(nameRequest);
 
     assertTrue(violations.isEmpty());
-    SetValueMap<String, String> errors = ErrorLib.mapFromConstraintViolations(violations);
+    Map<String, List<String>> errors = ErrorLib.mapFromConstraintViolations(violations);
     assertTrue(errors.isEmpty());
   }
 

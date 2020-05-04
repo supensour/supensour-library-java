@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Singular;
 import org.springframework.data.domain.Sort;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -17,7 +18,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class PagingRequest {
+public class PagingRequest implements Serializable {
+
+  private static final long serialVersionUID = 1316713092231797833L;
 
   private Long number;
 
@@ -30,7 +33,9 @@ public class PagingRequest {
   @NoArgsConstructor
   @AllArgsConstructor
   @Builder(toBuilder = true)
-  public static class SortingRequest {
+  public static class SortingRequest implements Serializable {
+
+    private static final long serialVersionUID = 7673365581251266984L;
 
     private Sort.Direction direction;
 

@@ -14,7 +14,7 @@ This library is for used with spring boot project. Detailed documentation will b
 <dependency>
   <groupId>com.supensour</groupId>
   <artifactId>supensour-springboot-library</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 
@@ -24,5 +24,13 @@ This library is for used with spring boot project. Detailed documentation will b
     <id>bintray-supensour-releases</id>
     <name>bintray-supensour-releases</name>
     <url>https://dl.bintray.com/supensour/maven-releases</url>
+</repository>
+```
+In addition, this library has been included in [Bintray JCenter](https://bintray.com/bintray/jcenter).
+```xml
+<repository>
+    <id>bintray-jcenter</id>
+    <name>bintray-jcenter</name>
+    <url>https://jcenter.bintray.com</url>
 </repository>
 ```
