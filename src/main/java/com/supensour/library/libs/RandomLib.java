@@ -10,7 +10,7 @@ import java.util.UUID;
  */
 public class RandomLib {
 
-  protected final static Random random = new SecureRandom();
+  protected static final Random random = new SecureRandom();
 
   public enum RandomType {
     DIGIT,

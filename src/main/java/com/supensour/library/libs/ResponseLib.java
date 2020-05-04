@@ -1,11 +1,12 @@
 package com.supensour.library.libs;
 
-import com.supensour.library.model.map.SetValueMap;
 import com.supensour.library.model.web.PagingResponse;
 import com.supensour.library.model.web.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 /**
@@ -53,13 +54,13 @@ public class ResponseLib {
     return status(HttpStatus.OK, page, mapper);
   }
 
-  public static <T> Response<T> badRequest(SetValueMap<String, String> errors, T data) {
+  public static <T> Response<T> badRequest(Map<String, List<String>> errors, T data) {
     Response<T> response = ResponseLib.status(HttpStatus.BAD_REQUEST, data);
     response.setErrors(errors);
     return response;
   }
 
-  public static <T> Response<T> badRequest(SetValueMap<String, String> errors) {
+  public static <T> Response<T> badRequest(Map<String, List<String>> errors) {
     return badRequest(errors, null);
   }
 

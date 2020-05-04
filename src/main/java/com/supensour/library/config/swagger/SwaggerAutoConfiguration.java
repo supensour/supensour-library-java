@@ -2,7 +2,6 @@ package com.supensour.library.config.swagger;
 
 import com.supensour.library.properties.AppInfoProperties;
 import io.swagger.annotations.Api;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -38,7 +37,7 @@ public class SwaggerAutoConfiguration implements ApplicationContextAware {
   private ApplicationContext applicationContext;
 
   @Override
-  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+  public void setApplicationContext(ApplicationContext applicationContext) {
     this.applicationContext = applicationContext;
   }
 

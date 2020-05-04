@@ -25,9 +25,16 @@ public class CollectionLib {
 
   private CollectionLib() {}
 
-  private final static Set<?> EMPTY_UNMODIFIABLE_SET = Collections.unmodifiableSet(new HashSet<>());
-  private final static List<?> EMPTY_UNMODIFIABLE_LIST = Collections.unmodifiableList(new ArrayList<>());
-  private final static Map<?, ?> EMPTY_UNMODIFIABLE_MAP = Collections.unmodifiableMap(new HashMap<>());
+  private static final String NULL_COLLECTION_SUPPLIER = "collection supplier must not be null";
+  private static final String NULL_MAP_SUPPLIER = "map supplier must not be null";
+  private static final String NULL_KEY = "Key must not be null";
+  private static final String NULL_KEY_VALUE_PAIR = "key-value pair must not be null";
+  private static final String NULL_ENTRY = "entry must not be null";
+  private static final String NULL_OTHER_MAP = "other map must not be null";
+
+  private static final Set<?> EMPTY_UNMODIFIABLE_SET = Collections.unmodifiableSet(new HashSet<>());
+  private static final List<?> EMPTY_UNMODIFIABLE_LIST = Collections.unmodifiableList(new ArrayList<>());
+  private static final Map<?, ?> EMPTY_UNMODIFIABLE_MAP = Collections.unmodifiableMap(new HashMap<>());
 
   /**
    * To check whether given map is not empty
@@ -184,7 +191,7 @@ public class CollectionLib {
    * @return map
    */
   public static <K, V> Map<K, V> addToMap(Map<K, V> map, Pair<K, V> kvPair) {
-    Objects.requireNonNull(kvPair, "key-value pair must not be null");
+    Objects.requireNonNull(kvPair, NULL_KEY_VALUE_PAIR);
     return addToMap(map, kvPair.getFirst(), kvPair.getSecond());
   }
 
@@ -203,7 +210,7 @@ public class CollectionLib {
    * @return map
    */
   public static <K, V> Map<K, V> addToMap(Map<K, V> map, Entry<K, V> entry) {
-    Objects.requireNonNull(entry, "entry must not be null");
+    Objects.requireNonNull(entry, NULL_ENTRY);
     return addToMap(map, entry.getKey(), entry.getValue());
   }
 
@@ -221,7 +228,7 @@ public class CollectionLib {
    * @return map
    */
   public static <K, V> Map<K, V> addToMap(Map<K, V> map, K key, V value) {
-    Objects.requireNonNull(key, "Key must not be null");
+    Objects.requireNonNull(key, NULL_KEY);
     map = Optional.ofNullable(map).orElseGet(HashMap::new);
     map.put(key, value);
     return map;
@@ -244,7 +251,7 @@ public class CollectionLib {
    * @return map
    */
   public static <K, V> Map<K, V> addToMap(Supplier<Map<K, V>> mapSupplier, Pair<K, V> kvPair) {
-    Objects.requireNonNull(mapSupplier, "map supplier must not be null");
+    Objects.requireNonNull(mapSupplier, NULL_MAP_SUPPLIER);
     return addToMap(mapSupplier.get(), kvPair);
   }
 
@@ -263,7 +270,7 @@ public class CollectionLib {
    * @return map
    */
   public static <K, V> Map<K, V> addToMap(Supplier<Map<K, V>> mapSupplier, Entry<K, V> entry) {
-    Objects.requireNonNull(mapSupplier, "map supplier must not be null");
+    Objects.requireNonNull(mapSupplier, NULL_MAP_SUPPLIER);
     return addToMap(mapSupplier.get(), entry);
   }
 
@@ -281,8 +288,167 @@ public class CollectionLib {
    * @return map
    */
   public static <K, V> Map<K, V> addToMap(Supplier<Map<K, V>> mapSupplier, K key, V value) {
-    Objects.requireNonNull(mapSupplier, "map supplier must not be null");
+    Objects.requireNonNull(mapSupplier, NULL_MAP_SUPPLIER);
     return addToMap(mapSupplier.get(), key, value);
+  }
+
+  public static <K, V> Map<K, List<V>> addToMultiValueMap(Map<K, List<V>> map, Pair<K, V> kvPair) {
+    return addToMultiValueMap(map, kvPair, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addToMultiValueMap(Map<K, List<V>> map, Entry<K, V> entry) {
+    return addToMultiValueMap(map, entry, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addToMultiValueMap(Map<K, List<V>> map, Map<K, V> other) {
+    return addToMultiValueMap(map, other, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addToMultiValueMap(Map<K, List<V>> map, K key, V value) {
+    return addToMultiValueMap(map, key, value, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addToMultiValueMap(Supplier<Map<K, List<V>>> mapSupplier, Pair<K, V> kvPair) {
+    return addToMultiValueMap(mapSupplier, kvPair, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addToMultiValueMap(Supplier<Map<K, List<V>>> mapSupplier, Entry<K, V> entry) {
+    return addToMultiValueMap(mapSupplier, entry, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addToMultiValueMap(Supplier<Map<K, List<V>>> mapSupplier, Map<K, V> other) {
+    return addToMultiValueMap(mapSupplier, other, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addToMultiValueMap(Supplier<Map<K, List<V>>> mapSupplier, K key, V value) {
+    return addToMultiValueMap(mapSupplier, key, value, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addAllToMultiValueMap(Map<K, List<V>> map, Pair<K, ? extends Collection<V>> kvPair) {
+    return addAllToMultiValueMap(map, kvPair, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addAllToMultiValueMap(Map<K, List<V>> map, Entry<K, ? extends Collection<V>> entry) {
+    return addAllToMultiValueMap(map, entry, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addAllToMultiValueMap(Map<K, List<V>> map, Map<K, ? extends Collection<V>> other) {
+    return addAllToMultiValueMap(map, other, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addAllToMultiValueMap(Map<K, List<V>> map, K key, Collection<V> value) {
+    return addAllToMultiValueMap(map, key, value, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addAllToMultiValueMap(Supplier<Map<K, List<V>>> mapSupplier, Pair<K, ? extends Collection<V>> kvPair) {
+    return addAllToMultiValueMap(mapSupplier, kvPair, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addAllToMultiValueMap(Supplier<Map<K, List<V>>> mapSupplier, Entry<K, ? extends Collection<V>> entry) {
+    return addAllToMultiValueMap(mapSupplier, entry, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addAllToMultiValueMap(Supplier<Map<K, List<V>>> mapSupplier, Map<K, ? extends Collection<V>> other) {
+    return addAllToMultiValueMap(mapSupplier, other, ArrayList::new);
+  }
+
+  public static <K, V> Map<K, List<V>> addAllToMultiValueMap(Supplier<Map<K, List<V>>> mapSupplier, K key, Collection<V> value) {
+    return addAllToMultiValueMap(mapSupplier, key, value, ArrayList::new);
+  }
+
+  //
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addToMultiValueMap(Map<K, C> map, Pair<K, V> kvPair, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(kvPair, NULL_KEY_VALUE_PAIR);
+    return addToMultiValueMap(map, kvPair.getFirst(), kvPair.getSecond(), collectionSupplier);
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addToMultiValueMap(Map<K, C> map, Entry<K, V> entry, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(entry, NULL_ENTRY);
+    return addToMultiValueMap(map, entry.getKey(), entry.getValue(), collectionSupplier);
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addToMultiValueMap(Map<K, C> map, Map<K, V> other, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(other, NULL_OTHER_MAP);
+    for (Entry<K, V> entry: other.entrySet()) {
+      map = addToMultiValueMap(map, entry.getKey(), entry.getValue(), collectionSupplier);
+    }
+    return map;
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addToMultiValueMap(Map<K, C> map, K key, V value, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(collectionSupplier, NULL_COLLECTION_SUPPLIER);
+    Objects.requireNonNull(key, NULL_KEY);
+    map = Optional.ofNullable(map).orElseGet(HashMap::new);
+    C list = map.computeIfAbsent(key, k -> collectionSupplier.get());
+    list.add(value);
+    return map;
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addToMultiValueMap(Supplier<Map<K, C>> mapSupplier, Pair<K, V> kvPair, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(mapSupplier, NULL_MAP_SUPPLIER);
+    return addToMultiValueMap(mapSupplier.get(), kvPair, collectionSupplier);
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addToMultiValueMap(Supplier<Map<K, C>> mapSupplier, Entry<K, V> entry, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(mapSupplier, NULL_MAP_SUPPLIER);
+    return addToMultiValueMap(mapSupplier.get(), entry, collectionSupplier);
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addToMultiValueMap(Supplier<Map<K, C>> mapSupplier, Map<K, V> other, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(mapSupplier, NULL_MAP_SUPPLIER);
+    return addToMultiValueMap(mapSupplier.get(), other, collectionSupplier);
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addToMultiValueMap(Supplier<Map<K, C>> mapSupplier, K key, V value, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(mapSupplier, NULL_MAP_SUPPLIER);
+    return addToMultiValueMap(mapSupplier.get(), key, value, collectionSupplier);
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addAllToMultiValueMap(Map<K, C> map, Pair<K, ? extends Collection<V>> kvPair, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(kvPair, NULL_KEY_VALUE_PAIR);
+    return addAllToMultiValueMap(map, kvPair.getFirst(), kvPair.getSecond(), collectionSupplier);
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addAllToMultiValueMap(Map<K, C> map, Entry<K, ? extends Collection<V>> entry, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(entry, NULL_ENTRY);
+    return addAllToMultiValueMap(map, entry.getKey(), entry.getValue(), collectionSupplier);
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addAllToMultiValueMap(Map<K, C> map, Map<K, ? extends Collection<V>> other, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(other, NULL_OTHER_MAP);
+    for (Entry<K, ? extends Collection<V>> entry: other.entrySet()) {
+      map = addAllToMultiValueMap(map, entry.getKey(), entry.getValue(), collectionSupplier);
+    }
+    return map;
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addAllToMultiValueMap(Map<K, C> map, K key, Collection<V> value, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(key, NULL_KEY);
+    map = Optional.ofNullable(map).orElseGet(HashMap::new);
+    C list = map.computeIfAbsent(key, k -> collectionSupplier.get());
+    list.addAll(value);
+    return map;
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addAllToMultiValueMap(Supplier<Map<K, C>> mapSupplier, Pair<K, ? extends Collection<V>> kvPair, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(mapSupplier, NULL_MAP_SUPPLIER);
+    return addAllToMultiValueMap(mapSupplier.get(), kvPair, collectionSupplier);
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addAllToMultiValueMap(Supplier<Map<K, C>> mapSupplier, Entry<K, ? extends Collection<V>> entry, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(mapSupplier, NULL_MAP_SUPPLIER);
+    return addAllToMultiValueMap(mapSupplier.get(), entry, collectionSupplier);
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addAllToMultiValueMap(Supplier<Map<K, C>> mapSupplier, Map<K, ? extends Collection<V>> other, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(mapSupplier, NULL_MAP_SUPPLIER);
+    return addAllToMultiValueMap(mapSupplier.get(), other, collectionSupplier);
+  }
+
+  public static <K, V, C extends Collection<V>> Map<K, C> addAllToMultiValueMap(Supplier<Map<K, C>> mapSupplier, K key, Collection<V> value, Supplier<C> collectionSupplier) {
+    Objects.requireNonNull(mapSupplier, NULL_MAP_SUPPLIER);
+    return addAllToMultiValueMap(mapSupplier.get(), key, value, collectionSupplier);
   }
 
   /**

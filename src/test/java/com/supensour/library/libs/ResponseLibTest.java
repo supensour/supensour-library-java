@@ -1,7 +1,6 @@
 package com.supensour.library.libs;
 
-import com.supensour.library.model.map.impl.SetValueHashMap;
-import com.supensour.library.model.map.SetValueMap;
+import com.supensour.library.model.map.impl.MultiValueHashMap;
 import com.supensour.library.model.web.PagingResponse;
 import com.supensour.library.model.web.Response;
 import org.junit.Test;
@@ -13,6 +12,7 @@ import org.springframework.http.HttpStatus;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
@@ -137,12 +137,12 @@ public class ResponseLibTest {
     assertEquals(Integer.parseInt(CONTENT_2), content.get(1).intValue());
   }
 
-  private void assertErrors(SetValueMap<String, String> errors) {
+  private void assertErrors(Map<String, List<String>> errors) {
     assertEquals(2, errors.size());
     assertEquals(1, errors.get("1").size());
-    assertEquals(CollectionLib.toSet("Code1"), errors.get("1"));
+    assertEquals(CollectionLib.toList("Code1"), errors.get("1"));
     assertEquals(2, errors.get("2").size());
-    assertEquals(CollectionLib.toSet("Code2", "Code3"), errors.get("2"));
+    assertEquals(CollectionLib.toList("Code2", "Code3"), errors.get("2"));
   }
 
   private Page<String> createPage() {
@@ -157,8 +157,8 @@ public class ResponseLibTest {
     return PageRequest.of(NUMBER.intValue(), SIZE.intValue());
   }
 
-  private SetValueMap<String, String> createErrors() {
-    return new SetValueHashMap<String, String>()
+  private Map<String, List<String>> createErrors() {
+    return new MultiValueHashMap<String, String>()
         .add("1", "Code1")
         .add("2", "Code2")
         .add("2", "Code3");

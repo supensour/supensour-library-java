@@ -1,8 +1,11 @@
 package com.supensour.library.model.error;
 
-import com.supensour.library.model.map.SetValueMap;
+import com.supensour.library.libs.CollectionLib;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Suprayan Yapura
@@ -10,12 +13,23 @@ import java.io.Serializable;
  */
 public interface ErrorMapping<T extends ErrorMapping<T>> extends Serializable {
 
-  void setErrors(SetValueMap<String, String> errors);
+  void setErrors(Map<String, List<String>> errors);
 
-  SetValueMap<String, String> getErrors();
+  Map<String, List<String>> getErrors();
 
   default T addError(String key, String value) {
-    getErrors().add(key, value);
+    Map<String, List<String>> errors = CollectionLib.addToMultiValueMap(getErrors(), key, value);
+    setErrors(errors);
+    return (T) this;
+  }
+
+  default T addErrors(String key, String... value) {
+    return addErrors(key, CollectionLib.toList(value));
+  }
+
+  default T addErrors(String key, Collection<String> value) {
+    Map<String, List<String>> errors = CollectionLib.addAllToMultiValueMap(getErrors(), key, value);
+    setErrors(errors);
     return (T) this;
   }
 
