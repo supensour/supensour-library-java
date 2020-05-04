@@ -90,13 +90,6 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <configuration>
-          <releaseProfiles>release</releaseProfiles>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.3</version>
@@ -185,12 +178,12 @@
     <repository>
       <id>bintray-supensour-releases</id>
       <name>bintray-supensour-releases</name>
-      <url>https://api.bintray.com/maven/supensour/maven-releases/supensour-springboot-library/;publish=1</url>
+      <url>https://api.bintray.com/maven/supensour/maven-releases/com.supensour:supensour-springboot-library/;publish=1</url>
     </repository>
     <snapshotRepository>
       <id>bintray-supensour-snapshots</id>
       <name>bintray-supensour-snapshots</name>
-      <url>https://api.bintray.com/maven/supensour/maven-snapshots/supensour-springboot-library/;publish=1</url>
+      <url>https://api.bintray.com/maven/supensour/maven-snapshots/com.supensour:supensour-springboot-library/;publish=1</url>
     </snapshotRepository>
   </distributionManagement>
 
