@@ -1,6 +1,6 @@
 # Supensour Springboot Library
 
-[ ![Download](https://api.bintray.com/packages/supensour/maven-releases/com.supensour:supensour-springboot-library/images/download.svg?version=1.0.0) ](https://bintray.com/supensour/maven-releases/com.supensour:supensour-springboot-library/1.0.0/link)
+[ ![Download](https://api.bintray.com/packages/supensour/maven-releases/com.supensour%3Asupensour-springboot-library/images/download.svg) ](https://bintray.com/supensour/maven-releases/com.supensour%3Asupensour-springboot-library/_latestVersion)
 ![Build](https://github.com/supensour/supensour-springboot-library/workflows/Build/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.supensour%3Asupensour-springboot-library&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.supensour%3Asupensour-springboot-library)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.supensour%3Asupensour-springboot-library&metric=coverage)](https://sonarcloud.io/dashboard?id=com.supensour%3Asupensour-springboot-library)
@@ -34,3 +34,15 @@ In addition, this library has been included in [Bintray JCenter](https://bintray
     <url>https://jcenter.bintray.com</url>
 </repository>
 ```
+
+## Libs
+1. CollectionLib
+2. ConverterLib
+3. DateTimeLib
+4. ErrorLib
+5. PagingLib\
+   `org.springframework.data:spring-data-commons` is needed.
+6. RandomLib
+7. ResponseLib\
+   `org.springframework.data:spring-data-commons` is needed.
+8. StringLib
