@@ -4,7 +4,7 @@
 
   <groupId>com.supensour</groupId>
   <artifactId>supensour-springboot-library</artifactId>
-  <version>1.1.1-SNAPSHOT</version>
+  <version>1.1.1</version>
   <packaging>jar</packaging>
 
   <name>supensour-springboot-library</name>
@@ -146,7 +146,7 @@
     <connection>scm:git:https://github.com/supensour/supensour-springboot-library.git</connection>
     <developerConnection>scm:git:git@github.com:supensour/supensour-springboot-library.git</developerConnection>
     <url>https://github.com/supensour/supensour-springboot-library</url>
-    <tag>HEAD</tag>
+    <tag>supensour-springboot-library-1.1.1</tag>
   </scm>
 
   <repositories>
