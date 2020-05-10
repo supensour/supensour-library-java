@@ -14,7 +14,7 @@ This library is for used with spring boot project. Detailed documentation will b
 <dependency>
   <groupId>com.supensour</groupId>
   <artifactId>supensour-springboot-library</artifactId>
-  <version>1.1.0</version>
+  <version>${supensour-library.version}</version>
 </dependency>
 ```
 
