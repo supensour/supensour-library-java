@@ -43,6 +43,7 @@ public interface BaseErrorControllerHandler {
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(MethodArgumentTypeMismatchException.class)
   default Response<?> methodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+    getLogger().warn(getMessage(e), e);
     Map<String, List<String>> errors = CollectionLib.addToMultiValueMap(HashMap::new, e.getName(), e.getMessage());
     return ResponseLib.badRequest(errors);
   }
@@ -104,7 +105,7 @@ public interface BaseErrorControllerHandler {
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   @ExceptionHandler(Throwable.class)
   default Response<?> throwable(Throwable e) {
-    getLogger().warn(getMessage(e), e);
+    getLogger().error(getMessage(e), e);
     Response<?> response = ResponseLib.status(HttpStatus.INTERNAL_SERVER_ERROR);
     if (StringUtils.hasText(e.getMessage())) {
       response.addError("default", e.getMessage());
