@@ -59,8 +59,8 @@ public class TestController {
   }
 
   @GetMapping(value = "/exception", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Object exception() throws Throwable {
-    throw new Exception();
+  public Object exception(@RequestParam(required = false) String message) throws Throwable {
+    throw new Exception(message);
   }
 
 }

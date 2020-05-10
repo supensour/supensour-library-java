@@ -12,6 +12,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
@@ -185,6 +190,23 @@ public class BaseErrorControllerHandlerTest {
         .then()
         .body("code", equalTo(HttpStatus.INTERNAL_SERVER_ERROR.value()))
         .body("status", equalTo(HttpStatus.INTERNAL_SERVER_ERROR.name()))
+        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+  }
+
+  @Test
+  public void exceptionWithMessage() {
+    String errorMessage = "This is error message!";
+    Map<String, List<String>> errors = new HashMap<>();
+    errors.computeIfAbsent("default", k -> new ArrayList<>()).add(errorMessage);
+
+    given()
+        .queryParam("message", errorMessage)
+        .when()
+        .get("/exception")
+        .then()
+        .body("code", equalTo(HttpStatus.INTERNAL_SERVER_ERROR.value()))
+        .body("status", equalTo(HttpStatus.INTERNAL_SERVER_ERROR.name()))
+        .body("errors", equalTo(errors))
         .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
   }
 

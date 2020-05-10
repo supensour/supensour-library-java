@@ -8,6 +8,7 @@ import com.supensour.library.model.web.Response;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -104,10 +105,14 @@ public interface BaseErrorControllerHandler {
   @ExceptionHandler(Throwable.class)
   default Response<?> throwable(Throwable e) {
     getLogger().warn(getMessage(e), e);
-    return ResponseLib.status(HttpStatus.INTERNAL_SERVER_ERROR);
+    Response<?> response = ResponseLib.status(HttpStatus.INTERNAL_SERVER_ERROR);
+    if (StringUtils.hasText(e.getMessage())) {
+      response.addError("default", e.getMessage());
+    }
+    return response;
   }
 
-  private String getMessage(Throwable e) {
+  default String getMessage(Throwable e) {
     return String.format("%s: %s", e.getClass().getName(), e.getMessage());
   }
 
