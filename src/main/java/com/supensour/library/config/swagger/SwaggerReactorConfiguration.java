@@ -1,13 +1,12 @@
 package com.supensour.library.config.swagger;
 
+import com.supensour.library.config.registry.ClassRegistry;
 import org.reactivestreams.Publisher;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.List;
 
 /**
  * @author Suprayan Yapura
@@ -18,10 +17,10 @@ import java.util.List;
 public class SwaggerReactorConfiguration implements SwaggerConfiguration {
 
   @Override
-  public void addGenericModelSubstitutes(List<Class<?>> genericModelSubstitutes) {
-    genericModelSubstitutes.add(Mono.class);
-    genericModelSubstitutes.add(Publisher.class);
-    genericModelSubstitutes.add(Flux.class);
+  public void addGenericModelSubstitutes(ClassRegistry registry) {
+    registry.addClass(Mono.class);
+    registry.addClass(Publisher.class);
+    registry.addClass(Flux.class);
   }
 
 }

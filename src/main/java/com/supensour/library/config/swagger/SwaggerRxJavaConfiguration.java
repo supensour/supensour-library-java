@@ -1,12 +1,11 @@
 package com.supensour.library.config.swagger;
 
+import com.supensour.library.config.registry.ClassRegistry;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;
 import rx.Observable;
 import rx.Single;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.List;
 
 /**
  * @author Suprayan Yapura
@@ -17,9 +16,9 @@ import java.util.List;
 public class SwaggerRxJavaConfiguration implements SwaggerConfiguration {
 
   @Override
-  public void addGenericModelSubstitutes(List<Class<?>> genericModelSubstitutes) {
-    genericModelSubstitutes.add(Single.class);
-    genericModelSubstitutes.add(Observable.class);
+  public void addGenericModelSubstitutes(ClassRegistry registry) {
+    registry.addClass(Single.class);
+    registry.addClass(Observable.class);
   }
 
 }

@@ -1,5 +1,7 @@
 package com.supensour.library.config.swagger;
 
+import com.supensour.library.config.registry.ClassRegistry;
+import com.supensour.library.config.registry.ParameterRegistry;
 import com.supensour.library.properties.AppInfoProperties;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,6 @@ import java.util.Optional;
  * @since 1.1.0
  */
 @Configuration
-@EnableSwagger2
 @ConditionalOnClass(EnableSwagger2.class)
 public class SwaggerAutoConfiguration implements ApplicationContextAware {
 
@@ -89,21 +90,21 @@ public class SwaggerAutoConfiguration implements ApplicationContextAware {
   }
 
   private Class<?>[] getGenericModelSubstitutes(List<SwaggerConfiguration> configs) {
-    List<Class<?>> genericModelSubstitutes = new ArrayList<>();
-    configs.forEach(config -> config.addGenericModelSubstitutes(genericModelSubstitutes));
-    return genericModelSubstitutes.toArray(Class[]::new);
+    ClassRegistry registry = new ClassRegistry();
+    configs.forEach(config -> config.addGenericModelSubstitutes(registry));
+    return registry.getClasses().toArray(Class[]::new);
   }
 
   private Class<?>[] getIgnoredParameterTypes(List<SwaggerConfiguration> configs) {
-    List<Class<?>> ignoredParameterTypes = new ArrayList<>();
-    configs.forEach(config -> config.addIgnoredParameterTypes(ignoredParameterTypes));
-    return ignoredParameterTypes.toArray(Class[]::new);
+    ClassRegistry registry = new ClassRegistry();
+    configs.forEach(config -> config.addIgnoredParameterTypes(registry));
+    return registry.getClasses().toArray(Class[]::new);
   }
 
   private List<Parameter> getGlobalParameters(List<SwaggerConfiguration> configs) {
-    List<Parameter> globalParameters = new ArrayList<>();
-    configs.forEach(config -> config.addGlobalParameter(globalParameters));
-    return globalParameters;
+    ParameterRegistry registry = new ParameterRegistry();
+    configs.forEach(config -> config.addGlobalParameter(registry));
+    return registry.getParameters();
   }
 
 }

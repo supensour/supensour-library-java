@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -32,9 +32,9 @@ public class SupensourAutoConfigurationTest extends TestCase {
 
   @Test
   public void swaggerCustomConfig() {
-    verify(swaggerCustomConfig).addGenericModelSubstitutes(anyList());
-    verify(swaggerCustomConfig).addGlobalParameter(anyList());
-    verify(swaggerCustomConfig).addIgnoredParameterTypes(anyList());
+    verify(swaggerCustomConfig).addGenericModelSubstitutes(any());
+    verify(swaggerCustomConfig).addGlobalParameter(any());
+    verify(swaggerCustomConfig).addIgnoredParameterTypes(any());
   }
 
 }

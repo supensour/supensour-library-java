@@ -1,8 +1,7 @@
 package com.supensour.library.config.swagger;
 
-import springfox.documentation.service.Parameter;
-
-import java.util.List;
+import com.supensour.library.config.registry.ClassRegistry;
+import com.supensour.library.config.registry.ParameterRegistry;
 
 /**
  * @author Suprayan Yapura
@@ -10,15 +9,15 @@ import java.util.List;
  */
 public interface SwaggerConfiguration {
 
-  default void addGenericModelSubstitutes(List<Class<?>> genericModelSubstitutes) {
+  default void addGenericModelSubstitutes(ClassRegistry registry) {
 
   }
 
-  default void addIgnoredParameterTypes(List<Class<?>> ignoredParameterTypes) {
+  default void addIgnoredParameterTypes(ClassRegistry registry) {
 
   }
 
-  default void addGlobalParameter(List<Parameter> globalParameters) {
+  default void addGlobalParameter(ParameterRegistry registry) {
 
   }
 
