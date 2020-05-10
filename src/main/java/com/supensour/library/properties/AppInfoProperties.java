@@ -19,4 +19,6 @@ public class AppInfoProperties {
 
   private String artifactId;
 
+  private String groupId;
+
 }
