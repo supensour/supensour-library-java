@@ -25,6 +25,7 @@
     <sonar.coverage.exclusions>
       **/com/supensour/library/model/error/**,
       **/com/supensour/library/model/group/**,
+      **/com/supensour/library/model/thread/**,
       **/com/supensour/library/model/web/**,
       **/com/supensour/library/properties/**
     </sonar.coverage.exclusions>
@@ -97,6 +98,7 @@
           <excludes>
             <exclude>**/com/supensour/library/model/error/**</exclude>
             <exclude>**/com/supensour/library/model/group/**</exclude>
+            <exclude>**/com/supensour/library/model/thread/**</exclude>
             <exclude>**/com/supensour/library/model/web/**</exclude>
             <exclude>**/com/supensour/library/properties/**</exclude>
           </excludes>
