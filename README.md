@@ -17,7 +17,7 @@
 - [More](#more)
 
 ## About
-This library is for used with spring boot project. Detailed documentation will be provided soon.
+This library is for used with spring boot project. 
 
 ## Preparation
 1\. Add this maven dependency.
