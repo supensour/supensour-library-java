@@ -22,8 +22,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Maven Verify
-      run: mvn -B clean verify
+    - name: Compile Code
+      run: mvn -B -e -U -ntp clean compile test-compile
+    - name: Code Analysis
+      run: >
+        mvn -B -e -U -ntp
+        org.jacoco:jacoco-maven-plugin:prepare-agent
+        package
+        org.jacoco:jacoco-maven-plugin:report
+        verify
+        org.jacoco:jacoco-maven-plugin:check
     - name: SonarCloud Scan
       run: >
         mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN
